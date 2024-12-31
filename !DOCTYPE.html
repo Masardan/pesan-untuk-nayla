@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Storage Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        header {
+            background-color: #6200ea;
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
+        }
+        .container {
+            margin: 20px auto;
+            max-width: 800px;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .upload-form {
+            text-align: center;
+        }
+        .upload-form input[type="file"] {
+            display: block;
+            margin: 10px auto;
+        }
+        .upload-form button {
+            background-color: #6200ea;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .upload-form button:hover {
+            background-color: #3700b3;
+        }
+        .file-list {
+            margin-top: 20px;
+        }
+        .file-item {
+            padding: 10px;
+            background: #f9f9f9;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>File Storage</h1>
+    </header>
+    <div class="container">
+        <form class="upload-form" id="uploadForm">
+            <h2>Upload Your Files</h2>
+            <input type="file" id="fileInput" multiple>
+            <button type="button" onclick="uploadFiles()">Upload</button>
+        </form>
+        <div class="file-list" id="fileList">
+            <h2>Uploaded Files</h2>
+            <p>No files uploaded yet.</p>
+        </div>
+    </div>
+
+    <script>
+        const fileList = document.getElementById('fileList');
+
+        function uploadFiles() {
+            const fileInput = document.getElementById('fileInput');
+            const files = fileInput.files;
+
+            if (files.length === 0) {
+                alert('Please select a file to upload.');
+                return;
+            }
+
+            const fileItems = Array.from(files).map(file => {
+                return `<div class='file-item'>${file.name}</div>`;
+            }).join('');
+
+            fileList.innerHTML = `<h2>Uploaded Files</h2>${fileItems}`;
+        }
+    </script>
+</body>
+</html>
